@@ -20,9 +20,19 @@ class ListsController < ApplicationController
     end
   end
 
+  def destroy
+    set_list
+    @list.destroy
+    redirect_to lists_path, notice: 'List was successfully destroyed.'
+  end
+
   private
 
   def list_params
     params.require(:list).permit(:name)
   end
+
+def set_list
+  @list = List.find(params[:id])
+end
 end
