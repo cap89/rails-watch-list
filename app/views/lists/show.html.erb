@@ -1,0 +1,21 @@
+<h1><%= @list.name %></h1>
+
+<% if @list.bookmarks.any? %>
+  <h2>Movies in this List:</h2>
+  <ul>
+    <% @list.bookmarks.each do |bookmark| %>
+      <li>
+        <%= bookmark.movie.title %>: <%= bookmark.comment %>
+        <!-- Optionally, add more details or links for each movie -->
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No movies in this list yet.</p>
+<% end %>
+
+<!-- Link to Add a New Bookmark to This List -->
+<%= link_to 'Add Movie to List', new_bookmark_path(list_id: @list.id) %>
+
+<!-- Back to All Lists -->
+<%= link_to 'Back to All Lists', lists_path %>
