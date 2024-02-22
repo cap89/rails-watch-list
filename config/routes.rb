@@ -8,5 +8,6 @@ Rails.application.routes.draw do
 
   get 'bookmarks/new', to: 'bookmarks#new', as: 'new_bookmark'
   post 'bookmarks', to: 'bookmarks#create'
+  delete 'bookmarks/:id', to: 'bookmarks#destroy', as: 'bookmark'
 
 end

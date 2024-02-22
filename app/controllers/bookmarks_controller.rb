@@ -17,9 +17,19 @@ class BookmarksController < ApplicationController
     end
   end
 
+  def destroy
+    set_bookmark
+    @bookmark.destroy
+    redirect_to list_path(@bookmark.list), notice: 'Movie was successfully removed from the list.'
+  end
+
   private
 
   def bookmark_params
     params.require(:bookmark).permit(:movie_id, :list_id, :comment)
+  end
+
+  def set_bookmark
+    @bookmark = Bookmark.find(params[:id])
   end
 end
