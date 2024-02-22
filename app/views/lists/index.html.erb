@@ -1,12 +1,12 @@
-<h1>All Lists</h1>
+<div class="container mt-4">
+  <h1>All Lists</h1>
 
-<%= link_to 'New List', new_list_path, class: 'btn btn-primary' %>
-
-<ul>
-  <% @lists.each do |list| %>
-    <li>
-      <%= link_to list.name, list_path(list) %>
-      (<%= link_to 'Delete', list_path(list), data: {turbo_method: :delete, confirm: 'Are you sure?' } %>)
-    </li>
-  <% end %>
-</ul>
+  <ul class="list-group mt-3">
+    <% @lists.each do |list| %>
+      <li class="list-group-item">
+        <%= link_to list.name, list_path(list), class: "btn btn-link" %>
+        <%= link_to 'Delete', list_path(list), data: {turbo_method: :delete, confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" %>
+      </li>
+    <% end %>
+  </ul>
+</div>
