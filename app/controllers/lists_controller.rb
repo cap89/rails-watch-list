@@ -29,10 +29,10 @@ class ListsController < ApplicationController
   private
 
   def list_params
-    params.require(:list).permit(:name)
+    params.require(:list).permit(:name, :photo)
   end
 
-def set_list
-  @list = List.find(params[:id])
-end
+  def set_list
+    @list = List.find(params[:id])
+  end
 end
