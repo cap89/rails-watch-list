@@ -22,9 +22,13 @@ class ListsController < ApplicationController
 
   def destroy
     set_list
+    # Delete the associated photo from the server
+    @list.photo.purge if @list.photo.attached?
+    # Destroy the list
     @list.destroy
     redirect_to lists_path, notice: 'List was successfully destroyed.'
   end
+
 
   private
 
