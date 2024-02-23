@@ -6,14 +6,19 @@
     <p>No photo available</p>
   <% end %>
 </div>
-
-
+<br>
 <div class="container">
   <% if @list.bookmarks.any? %>
+    <div class="text-right"> <!-- Or 'text-end' for Bootstrap 5 -->
+      <!-- Link to Add a New Bookmark to This List, styled as a button -->
+      <%= link_to 'Add Movie to List', new_bookmark_path(list_id: @list.id), class: 'btn btn-primary' %>
+      <!-- Back to All Lists, styled as a button -->
+      <%= link_to 'Back to All Lists', lists_path, class: 'btn btn-secondary' %>
+    </div>
     <br>
     <div class="row">
       <% @list.bookmarks.each do |bookmark| %>
-        <div class="col-md-4 mb-4">
+        <div class="col-md-3 mb-2">
           <div class="card h-100 border-radius-custom">
             <% if bookmark.movie.poster_url.present? %>
               <%= image_tag bookmark.movie.poster_url, class: "card-img-top border-radius-custom-top" %>
@@ -22,7 +27,7 @@
               <h5 class="card-title"><%= bookmark.movie.title %></h5>
               <p class="card-text"><%= bookmark.comment %></p>
               <div class="mt-auto">
-                <%= link_to 'Remove', bookmark_path(bookmark), class: 'btn btn-danger', data: { turbo_method: :delete, confirm: 'Are you sure?' } %>
+                <%= link_to 'Remove', bookmark_path(bookmark), method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' } %>
               </div>
             </div>
           </div>
@@ -33,11 +38,3 @@
     <p>No movies in this list yet.</p>
   <% end %>
 </div>
-
-
-<!-- Link to Add a New Bookmark to This List -->
-<%= link_to 'Add Movie to List', new_bookmark_path(list_id: @list.id) %>
-
-
-<!-- Back to All Lists -->
-<%= link_to 'Back to All Lists', lists_path %>
