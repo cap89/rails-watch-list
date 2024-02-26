@@ -70,5 +70,6 @@ gem "font-awesome-sass", "~> 6.1"
 gem "simple_form"
 gem "sassc-rails"
 gem "json"
-gem "dotenv"
-gem "cloudinary"
+gem 'cloudinary'
+gem 'dotenv-rails', groups: [:development, :test, :production]
+
